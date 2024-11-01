@@ -250,7 +250,7 @@ export function KanbanBoard({
         </SortableContext>
       </BoardContainer>
 
-      {"document" in window &&
+      {"document" in window ? (
         createPortal(
           <DragOverlay>
             {activeColumn && (
@@ -265,7 +265,10 @@ export function KanbanBoard({
             {activeTask && <TaskCard task={activeTask} isOverlay />}
           </DragOverlay>,
           document.body,
-        )}
+        )
+      ) : (
+        <></>
+      )}
     </DndContext>
   );
 
